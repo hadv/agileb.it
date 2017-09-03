@@ -1,9 +1,9 @@
-baseurl = "https://example.org/"
-title = "Creative portfolio"
+baseurl = "http://agileb.it"
+title = "No problem, only solution"
 theme = "hugo-creative-portfolio-theme"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
-disqusShortname = ""
+disqusShortname = "dvietha"
 # Enable Google Analytics by entering your tracking code
 googleAnalytics = ""
 
@@ -12,10 +12,10 @@ googleAnalytics = ""
   # Use custom.css for your custom styling
   style = "default"
   description = "Describe your website"
-  copyright = "&copy;2016 Your name or company"
+  copyright = "&copy;2017 AgileB.it"
   sidebarAbout = [
-    "I am a creative illustrator and graphic designer with more than 10 years of experience.",
-    "Originally from Toronto, currently based in London."
+    "I am a cuder with more than 10 years of experience.",
+    "Originally from Hai Phong, currently based in Hanoi."
   ]
   # Contact page
      # Since this template is static, the contact form uses www.formspree.io as a
@@ -29,7 +29,7 @@ googleAnalytics = ""
      # - send a dummy email yourself to confirm your account
      # - click the confirm link in the email from www.formspree.io
      # - you're done. Happy mailing!
-  email = "you@yoursite.com"
+  email = "tony@agileb.it"
 
   # Nav links in the side bar
   [[params.navlinks]]
@@ -45,12 +45,10 @@ googleAnalytics = ""
   url = "contact/"
 
   [params.social]
-  facebook      = "full page or profile url in facebook"
-  googleplus    = "full profile url in googleplus"
-  email         = "email@example.com"
-  twitter       = "full profile url in twitter"
-  linkedin      = "full profile url in linkedin"
-  stackoverflow = "full profile url in stackoverflow"
-  instagram     = "full profile url in instagram"
-  github        = "full profile url in github"
+  facebook      = "https://fb.me/dang.vietha"
+  email         = "tony@agileb.it"
+  twitter       = "https://twitter.com/dang_vietha"
+  linkedin      = "https://www.linkedin.com/in/dvietha/"
+  instagram     = "https://www.instagram.com/hadv/"
+  github        = "https://github.com/hadv"
 
