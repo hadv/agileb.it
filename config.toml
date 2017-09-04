@@ -1,5 +1,5 @@
 baseurl = "http://agileb.it"
-title = "No problem, only solution"
+title = "AgileB.it - No problem, only solution"
 theme = "hugo-creative-portfolio-theme"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -11,7 +11,7 @@ googleAnalytics = ""
   # Style options: default (pink), blue, green, pink, red, sea, violet
   # Use custom.css for your custom styling
   style = "default"
-  description = "Describe your website"
+  description = "No problem, only solution"
   copyright = "&copy;2017 AgileB.it"
   sidebarAbout = [
     "I am a cuder with more than 10 years of experience.",
