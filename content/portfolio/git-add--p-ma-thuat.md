@@ -1,7 +1,7 @@
 ---
 title: "`git add -p` ma thuật"
 date: 2017-09-04T15:45:42+07:00
-draft: true
+draft: false
 image: "img/portfolio/git-add--p.png"
 ---
 

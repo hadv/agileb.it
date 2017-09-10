@@ -1,7 +1,7 @@
 ---
 title: "Viết lại lịch sử của git bằng cách sử dụng interactive rebase"
 date: 2017-09-04T21:45:42+07:00
-draft: true
+draft: false
 image: "img/portfolio/git-rebase.png"
 ---
 
