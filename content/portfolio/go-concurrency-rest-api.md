@@ -18,11 +18,11 @@ Các ngôn ngữ lập trình hiện đại thì ngày càng dễ dàng cho lậ
 
 Hôm nay, tôi làm một code mẫu tạo REST API đơn giản bằng Golang để thấy được việc lập trình *concurrency* bằng Golang nó trở nên đơn giản đến mức nào nếu so sánh với việc làm tương tự trên ngôn ngữ lập trình C/C++ hồi xưa.
 Tôi xin nhấn mạnh là `C/C++` của thời *ông bà anh* nhé vì bản thân `C/C++` vẫn đang phát triển và mới cho ra phiên bản năm 2017 có nhiều điểm mới mà tôi cũng không biết cụ thể nó là cái gì? :)
-Và ở một cách tiếp cận khác, tiếp cận hơi khác nhưng gần đây các ngôn ngữ lập trình đều có thư viện `reactive programming` cũng khá thuận tiện cho việc xử lý các yêu cầu asynchronous nhằm tăng độ response của các ứng dụng.
+Và ở một cách tiếp cận khác, gần đây các ngôn ngữ lập trình đều có thư viện `reactive programming` cũng khá thuận tiện cho việc xử lý các yêu cầu asynchronous nhằm tăng độ response của các ứng dụng.
 Tuy nhiên, tuỳ vào yêu cầu bài toán và cách thiết kế hệ thống mà chúng ta cần lựa chọn sử dụng cách tiếp cận nào cho phù hợp và dễ dàng hơn.
 
 *Yêu cầu* của bài toán là viết một API trả về nhiệt độ trung bình từ nhiều nguồn số liệu của một thành phố.
-Thông thường, nếu sử dụng các lập trình tuần tự thì chúng ra phải lấy nhiệt độ của thành phó của từng nguồn cung cấp rồi tính ra được nhiệt độ trung bình.
+Thông thường, nếu sử dụng các lập trình tuần tự thì chúng ra phải lấy nhiệt độ của thành phố của từng nguồn cung cấp rồi tính ra được nhiệt độ trung bình.
 Giả dụ chúng ta có 10 nguồn cung cấp số liệu và để lấy nhiệt độ của mỗi nguồn mất 1 giây thì tổng thời gian cho việc lấy nhiệt độ trung bình của API sẽ là 10 giây.
 Opsss, 10 giây, một thời gian khó có thể chấp nhận cho một API trả về kết quả.
 
