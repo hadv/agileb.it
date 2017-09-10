@@ -33,109 +33,18 @@ Cụ thể các bước tiến hành cài đặt như sau.
 
 * Trước tiên thì chúng ta định nghĩa một interface chung để lấy nhiệt độ của một thành phố từ các nguồn số liệu khác nhau
 
-```
-type weatherProvider interface {
-	temperature(city string) (float64, error)
-}
-```
+{{< gist 6c9af258613ef678527a86ebe70f8df5 >}} 
 
 * Vì mỗi nguồn số liệu có cách lấy số liệu khác nhau nên chúng ta cần khai báo các `struct` tương ứng để cài đặt. 
 Ở đây để đơn giản thì tôi lấy từ 2 nguồn số liệu là `OpenWeatherMap` và `apixu`
 
+{{< gist 72ebbfbc37782f4bd431f76e739c1ed2 >}}
 
-```
-type openWeatherMap struct {
-	apiKey string
-}
-
-func (w openWeatherMap) temperature(city string) (float64, error) {
-	resp, err := http.Get("http://api.openweathermap.org/data/2.5/weather?APPID=" + w.apiKey + "&q=" + city)
-	if err != nil {
-		return 0, err
-	}
-
-	defer resp.Body.Close()
-
-	var d struct {
-		Main struct {
-			Kelvin float64 `json:"temp"`
-		} `json:"main"`
-	}
-
-	if err := json.NewDecoder(resp.Body).Decode(&d); err != nil {
-		return 0, err
-	}
-
-	log.Printf("openWeatherMap: %s: %.2f", city, d.Main.Kelvin)
-	return d.Main.Kelvin, nil
-}
-
-type apixu struct {
-	apiKey string
-}
-
-func (w apixu) temperature(city string) (float64, error) {
-	resp, err := http.Get("http://api.apixu.com/v1/current.json?key=" + w.apiKey + "&q=" + city)
-	if err != nil {
-		return 0, err
-	}
-
-	defer resp.Body.Close()
-
-	var d struct {
-		Observation struct {
-			Celsius float64 `json:"temp_c"`
-		} `json:"current"`
-	}
-
-	if err := json.NewDecoder(resp.Body).Decode(&d); err != nil {
-		return 0, err
-	}
-
-	kelvin := d.Observation.Celsius + 273.15
-	log.Printf("apixu: %s: %.2f", city, kelvin)
-	return kelvin, nil
-}
-```
+{{< gist cf89c337ea74c74117fd92cd1b1af4cf >}}
 
 * Sau khi, đã có thể lấy được số liệu từ các nguồn cụ thể thì chúng ta sẽ sử dụng `go concurrency` và `channel` để cài đặt cách thức để lấy số liệu của các nguồn được diễn ra cùng một lúc để giảm thiểu thời gian chờ đợi.
 
-```
-func (w multiWeatherProvider) temperature(city string) (float64, error) {
-	// Make a channel for temperatures, and a channel for errors.
-	// Each provider will push a value into only one.
-	temps := make(chan float64, len(w))
-	errs := make(chan error, len(w))
-
-	// For each provider, spawn a goroutine with an anonymous function.
-	// That function will invoke the temperature method, and forward the response.
-	for _, provider := range w {
-		go func(p weatherProvider) {
-			k, err := p.temperature(city)
-			if err != nil {
-				errs <- err
-				return
-			}
-			temps <- k
-		}(provider)
-	}
-
-	sum := 0.0
-
-	// Collect a temperature or an error from each provider.
-	for i := 0; i < len(w); i++ {
-		select {
-		case temp := <-temps:
-			sum += temp
-		case err := <-errs:
-			return 0, err
-		}
-	}
-
-	// Return the average, same as before.
-	return sum / float64(len(w)), nil
-}
-```
+{{< gist 0d357f31d8b4b570c539a7f8a8819533 >}}
 
 Ở đây, các bạn có thể thấy việc gọi một method concurrency bằng Golang khá đơn giản, chỉ cần dùng từ khoá `go` trước lời gọi hàm mà thôi.
 
@@ -157,34 +66,7 @@ temps <- k
 
 Cuối cùng, thì tổng hợp lại chúng ta có thể expose thành một REST API thông qua hàm `main() ` như sau
 
-```
-func main() {
-	mw := multiWeatherProvider{
-		openWeatherMap{apiKey: "5bd6d7d469feee97788f51744f8c2910"},
-		apixu{apiKey: "ff8b321075a54e7288794851162712"},
-	}
-
-	http.HandleFunc("/weather/", func(w http.ResponseWriter, r *http.Request) {
-		begin := time.Now()
-		city := strings.SplitN(r.URL.Path, "/", 3)[2]
-
-		temp, err := mw.temperature(city)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		json.NewEncoder(w).Encode(map[string]interface{}{
-			"city": city,
-			"temp": temp,
-			"took": time.Since(begin).String(),
-		})
-	})
-
-	http.ListenAndServe(":8080", nil)
-}
-```
+{{< gist 9d02306d1cd8472e321330ec658928aa >}}
 
 Như vậy, chúng ta có thể dễ dàng cài đặt một REST API hiệu quả bằng cách sử dụng `go concurrency` và `channel`. 
 Source code mẫu các bạn có thể xem trên github: https://github.com/hadv/go-concurrency-rest-api
