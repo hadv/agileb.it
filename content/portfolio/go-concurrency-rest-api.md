@@ -9,7 +9,7 @@ image: "img/portfolio/gophermegaphones.jpg"
 Các lập trình viên khi tiếp cận với `Golang` thì đều cảm giác rất thân quen và dễ dàng có thể code nhoay nhoáy trong vòng 2-3 ngày hay đến 1 tuần là cùng.
 Bởi `Golang` được thừa kế từ ngôn ngữ lập trình `C` mà ngôn ngữ lập trình `C` thì chắc lập trình viên nào cũng được học và sử dụng trong trường đại học cả rồi. 
 Đây cũng là ý kiến chủ quan của một lập trình viên tay ngang và thuộc thế hệ 8x như tôi. Ngôn ngữ `C/C++` thì bản thân tôi cũng chưa được học bao giờ. 
-hẳng là hồi học đại học năm thứ nhất đại học, tôi vẫn tiếp tục hì hục ngồi code các bài toán trên ngôn ngữ lập trình `Pascal`, ngôn ngữ lập trình mà tôi đã được học từ năm lớp 10 ở trường PTTH, thằng bạn cùng lớp thấy thế nên nó bảo tôi: "Nếu mày muốn thành lập trình viên chuyên nghiệp thì kiểu gì mày cũng phải học `C/C++`".
+Chẳng là hồi học đại học năm thứ nhất đại học, tôi vẫn tiếp tục hì hục ngồi code các bài toán trên ngôn ngữ lập trình `Pascal`, ngôn ngữ lập trình mà tôi đã được học từ năm lớp 10 ở trường PTTH, thằng bạn cùng lớp thấy thế nên nó bảo tôi: "Nếu mày muốn thành lập trình viên chuyên nghiệp thì kiểu gì mày cũng phải học `C/C++`".
 Nên tôi và nó có mò lên hiệu sách trên phố sách đình đám nhất Hà Thành, *Tràng Tiền*, lê la khắp các hiệu sách để tìm mua 1 quyển lập trình `C++` và sau đó có mua thêm một quyển lập trình `Assembly` của *Peter Norton* khá nổi tiếng và phổ biến những năm đó thì phải.
 Tôi vẫn nhớ như in là tôi đã rất ấn tượng với bìa sách hình chân dung ở tư thế đang khoanh tay trước ngực của Peter Norton. Một phong thái tự tin và rất thông minh.
 
