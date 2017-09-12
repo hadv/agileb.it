@@ -28,6 +28,8 @@ Thông thường, nếu sử dụng các lập trình tuần tự thì chúng ra
 Giả dụ chúng ta có 10 nguồn cung cấp số liệu và để lấy nhiệt độ của mỗi nguồn mất 1 giây thì tổng thời gian cho việc lấy nhiệt độ trung bình của API sẽ là 10 giây.
 Opsss, 10 giây, một thời gian khó có thể chấp nhận cho một API trả về kết quả.
 
+![Sleepy](/img/portfolio/sleepy.jpg)
+
 Giải pháp để tăng hiệu năng cho API ở đây là sử dụng lập trình `go concurrnecy` kết hợp với `channel` để có thể cùng một lúc lấy được nhiệt độ của các nguồn cung cấp trong cùng một thời điểm.
 Kết quả là chúng ra chỉ cần, tương đối, 1 giây để có thể lấy được kết quả từ 10 hay nhiều nguồn số liệu khác nhau. Một sự khác biệt đáng kinh ngạc?
 

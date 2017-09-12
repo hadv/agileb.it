@@ -1,1 +1,6 @@
 /* your styles go here */
+
+.content-column-content img {
+    max-width: 100%;
+}
+
