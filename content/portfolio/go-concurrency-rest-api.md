@@ -13,6 +13,8 @@ Chẳng là hồi học đại học năm thứ nhất đại học, tôi vẫn 
 Nên tôi và nó có mò lên hiệu sách trên phố sách đình đám nhất Hà Thành, *Tràng Tiền*, lê la khắp các hiệu sách để tìm mua 1 quyển lập trình `C++` và sau đó có mua thêm một quyển lập trình `Assembly` của *Peter Norton* khá nổi tiếng và phổ biến những năm đó thì phải.
 Tôi vẫn nhớ như in là tôi đã rất ấn tượng với bìa sách hình chân dung ở tư thế đang khoanh tay trước ngực của Peter Norton. Một phong thái tự tin và rất thông minh.
 
+![Peter Norton](/img/portfolio/peternorton1.jpg)
+
 Thời của tôi là vậy, các thế hệ Y sau này chắc sẽ không còn học C nữa, mà có thể là `Haskell` hay một ngôn ngữ nào mới mẻ khác mà chúng ta chưa biết.
 Các ngôn ngữ lập trình hiện đại thì ngày càng dễ dàng cho lập trình viên hơn. Các lập trình viên ở *Google* cho ra đời `Golang` chắc cũng nhằm mục đích đơn giản hoá việc lập trình trên ngôn ngữ `C` mà vẫn đạt được hiệu năng cao.
 
