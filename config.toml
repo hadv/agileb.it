@@ -52,3 +52,5 @@ googleAnalytics = ""
   instagram     = "https://www.instagram.com/hadv/"
   github        = "https://github.com/hadv"
 
+[permalinks]
+  portfolio = "/:year/:month/:day/:title/"
