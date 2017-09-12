@@ -53,7 +53,7 @@ Cụ thể các bước tiến hành cài đặt như sau.
 Ở đây, các bạn có thể thấy việc gọi một method concurrency bằng Golang khá đơn giản, chỉ cần dùng từ khoá `go` trước lời gọi hàm mà thôi.
 
 ```
-go func(p weatherProvider) {
+go func(p weatherProvider) {...}(provider)
 ```
 
 Mỗi lời gọi này thì Go sẽ tạo riêng một `goroutine` chạy độc lập nhau nên việc lấy số liệu ở từng nguồn được thực hiện gần như đồng thời.
