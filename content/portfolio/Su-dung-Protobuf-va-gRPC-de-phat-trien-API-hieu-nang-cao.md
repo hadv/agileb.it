@@ -33,41 +33,7 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 
 Trước tiên, chúng ta mô tả ứng dụng trong file `service.proto` theo chuẩn *proto3* như sau:
 
-```
-syntax = "proto3";
-option go_package = "echo";
-
-// Echo Service
-//
-// Echo Service API consists of a single service which returns a message.
-package hadv.grpc.echo;
-
-import "google/api/annotations.proto";
-
-// Message represents a simple message sent to the Echo service.
-message Message {
-	// Id represents the message identifier.
-	string id = 1;
-}
-
-// Echo service responds to incoming echo requests.
-service EchoService {
-	// Echo method receives a simple message and returns it.
-	// The message posted as the id parameter will also be returned.
-	rpc Echo(Message) returns (Message) {
-		option (google.api.http) = {
-			post: "/v1/example/echo/{id}"
-		};
-	}
-	// EchoBody method receives a simple message and returns it.
-	rpc EchoBody(Message) returns (Message) {
-		option (google.api.http) = {
-			post: "/v1/example/echo_body"
-			body: "*"
-		};
-	}
-}
-```
+{{< gist c0ea7becd7652402e323628503341982 >}}
 
 Trước khi cài đặt tính năng cho dịch vụ **EchoService** thì chúng ta cần chạy lệnh sau để tự động sinh ra các stub class cần thiết trong file `service.pb.go`
 
@@ -81,78 +47,7 @@ $ protoc -I/usr/local/include -I. \
 
 Sau đó, chúng ta có thể cài đặt **EchoService** như trong file `echo.go` sau.
 
-```
-package main
-
-import (
-	"github.com/golang/glog"
-	examples "github.com/hadv/grpc"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/metadata"
-)
-
-// Implements of EchoServiceServer
-
-type echoServer struct{}
-
-func newEchoServer() examples.EchoServiceServer {
-	return new(echoServer)
-}
-
-func (s *echoServer) Echo(ctx context.Context, msg *examples.Message) (*examples.Message, error) {
-	glog.Info(msg)
-	return msg, nil
-}
-
-func (s *echoServer) EchoBody(ctx context.Context, msg *examples.Message) (*examples.Message, error) {
-	glog.Info(msg)
-	grpc.SendHeader(ctx, metadata.New(map[string]string{
-		"foo": "foo1",
-		"bar": "bar1",
-	}))
-	grpc.SetTrailer(ctx, metadata.New(map[string]string{
-		"foo": "foo2",
-		"bar": "bar2",
-	}))
-	return msg, nil
-}
-```
-
-Để tạo entry point và khởi động echo service thì chúng ra tạo ra một file `main.go` như sau.
-
-```
-package main
-
-import (
-	"flag"
-	"net"
-
-	"github.com/golang/glog"
-	examples "github.com/hadv/grpc"
-	"google.golang.org/grpc"
-)
-
-func Run() error {
-	listen, err := net.Listen("tcp", ":9090")
-	if err != nil {
-		return err
-	}
-	server := grpc.NewServer()
-	examples.RegisterEchoServiceServer(server, newEchoServer())
-	server.Serve(listen)
-	return nil
-}
-
-func main() {
-	flag.Parse()
-	defer glog.Flush()
-
-	if err := Run(); err != nil {
-		glog.Fatal(err)
-	}
-}
-```
+{{< gist e70b278e84842df606786186ff5918f2 >}}
 
 Để kết nối đến với echo server trên thì chúng ra có thể cài đặt `EchoServiceClient` kết nối đến. Tuy nhiên, ở đây tôi bỏ qua bước này và chuyển sang tạo reverse-proxy cho kết nối thông qua REST JSON API. Để tạo ra reverse-proxy `service.pb.gw.go`, chúng ra chạy lệnh sau.
 
@@ -166,49 +61,7 @@ $ protoc -I/usr/local/include -I. \
 
 Để tạo entry-point và khởi động server cho REST JSON API thì chúng ta tạo ra file `main.go` như sau
 
-```
-package main
-
-import (
-	"flag"
-	"net/http"
-
-	"github.com/gengo/grpc-gateway/runtime"
-	"github.com/golang/glog"
-	echo "github.com/hadv/grpc/echo"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
-)
-
-var (
-	echoEndpoint = flag.String("echo_endpoint", "localhost:9090", "endpoint of EchoService")
-)
-
-func Run(address string, opts ...runtime.ServeMuxOption) error {
-	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)
-	defer cancel()
-
-	mux := runtime.NewServeMux(opts...)
-	dialOpts := []grpc.DialOption{grpc.WithInsecure()}
-	err := echo.RegisterEchoServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, dialOpts)
-	if err != nil {
-		return err
-	}
-
-	http.ListenAndServe(address, mux)
-	return nil
-}
-
-func main() {
-	flag.Parse()
-	defer glog.Flush()
-
-	if err := Run(":8080"); err != nil {
-		glog.Fatal(err)
-	}
-}
-```
+{{< gist 9ec73d796a0dd9995fa64b97fd7ff2c0 >}}
 
 Sau khi build và khởi động server thì chúng ta có thể gọi REST API bằng lệnh `curl -X POST "http://localhost:8080/v1/example/echo/grpc"` và nhận được kết quả như sau
 
