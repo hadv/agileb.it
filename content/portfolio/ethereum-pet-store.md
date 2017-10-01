@@ -1,5 +1,5 @@
 ---
-title: "Cửa hàng thứ cưng trên Ethereum blockchain - Phần 1"
+title: "Cửa hàng thú cưng trên Ethereum blockchain - Phần 1"
 date: 2017-10-01T15:45:42+07:00
 draft: false
 image: "img/portfolio/petshop.png"
@@ -18,7 +18,7 @@ Nội dung chính bao gồm 3 phần:
 
 ## Tóm tắt về dự án
 
-Ông chủ cửa hàng thú cưng muốn áp dụng Ethereum để tăng tính hiệu quả trong việc mua bán thú cưng cho các cậu ấm cô chiêu.
+Ông chủ cửa hàng thú cưng muốn áp dụng [Ethereum](https://ethereum.org) để tăng tính hiệu quả trong việc mua bán thú cưng cho các "cậu ấm cô chiêu."
 Do cửa hàng còn bé nên chỉ đủ chỗ cho tối đa 16 con thú cưng các loại thôi. 
 Ông chủ yêu công nghệ này muốn gắn kết mỗi giao dịch mua bán thú cưng với một địa chỉ cụ thể của ehtereum blockchain. 
 Giao diện đã được ông chủ thuê một UI/UX lững lẫy làm sẵn rồi, công việc của chúng ta chỉ đơn giản là phát triển một smart contract và viết thêm xử lý logic ỏ phía front-end.
