@@ -6,9 +6,11 @@ image: "img/portfolio/petshop.png"
 ---
 
 Theo hiểu biết hạn hẹp của mình thì [Truffle](http://truffleframework.com/) mà một trong những nền tảng dễ sử dụng để phát triển các ứng dụng 
-[Ethereum Smart Contract](http://truffleframework.com/tutorials/ethereum-overview). Bài viết này của mình chỉ mang tính tóm tắt lại các bước để làm ra một ứng dụng smart contract
-theo tutor của [Trufle Pet Store](http://truffleframework.com/tutorials/pet-shop) và có bổ sung thêm một vài giải thích nhỏ của riêng mình.
-Thực hiện thực hành nhanh theo tutor thì cũng nhanh thôi, chỉ tầm 1-2h đồng hồ là cùng. Tuy nhiên, viết lại các bước mình đã làm cũng là một cách tìm hiểu kỹ hơn cho cá nhân mình.
+[Ethereum Smart Contract](http://truffleframework.com/tutorials/ethereum-overview). 
+Bài viết này của mình chỉ mang tính tóm tắt lại các bước để làm ra một ứng dụng smart contract
+theo tutor của [Truffle Pet Store](http://truffleframework.com/tutorials/pet-shop) và có bổ sung thêm một vài giải thích nhỏ của riêng mình.
+Thực hiện thực hành nhanh theo tutor thì cũng nhanh thôi, chỉ tầm 1-2h đồng hồ là cùng. 
+Tuy nhiên, viết lại các bước mình đã làm cũng là một cách tìm hiểu kỹ hơn cho cá nhân mình.
 
 Nội dung chính bao gồm 3 phần:
 
@@ -21,14 +23,14 @@ Nội dung chính bao gồm 3 phần:
 Ông chủ cửa hàng thú cưng muốn áp dụng [Ethereum](https://ethereum.org) để tăng tính hiệu quả trong việc mua bán thú cưng cho các "cậu ấm cô chiêu."
 Do cửa hàng còn bé nên chỉ đủ chỗ cho tối đa 16 con thú cưng các loại thôi. 
 Ông chủ yêu công nghệ này muốn gắn kết mỗi giao dịch mua bán thú cưng với một địa chỉ cụ thể của ehtereum blockchain. 
-Giao diện đã được ông chủ thuê một UI/UX lững lẫy làm sẵn rồi, công việc của chúng ta chỉ đơn giản là phát triển một smart contract và viết thêm xử lý logic ỏ phía front-end.
+Giao diện đã được ông chủ thuê một nhà thiết kế UI/UX lững lẫy thế giới làm sẵn rồi, công việc của chúng ta chỉ đơn giản là phát triển một smart contract và viết thêm xử lý logic ở phía front-end.
 
-Mọi thứ đã sẵn, chúng ta bắt tay vào phát triển ứng dụng theo yêu cầu của ông chủ dễ tính này. 
+Mọi thứ đã sẵn, chúng ta bắt tay vào phát triển ứng dụng theo yêu cầu của ông chủ cửa hàng yêu thích công nghệ. 
 Đầu tiên thì chúng ta cần cài đặt môi trường phát triển.
 
 ## Cài đặt môi trường phát triển
 
-Để cài đặt TestRPC và Trufle thì trước tiên chúng ta cần có vài thứ sau đây; chắc máy cuder nào cũng có sẵn cả 
+Để cài đặt TestRPC và Trufle thì trước tiên chúng ta cần có vài thứ sau đây; chắc máy cuder nào cũng có sẵn cả rồi.
 
 * Node.js v6+ và npm
 * Git
@@ -41,7 +43,7 @@ npm install -g truffle
 ```
 
 Tiện đây thì giải thích thêm một chút về *TestRPC* không các bạn lại thắc mắc không biết *TestRPC* là cái củ đậu gì? 
-*TestRPC* đơn giản chỉ là một blockchain network chạy trên máy local của chúng ta; thường được s dụng để chạy test cho smart contract và các DApp trên local.
+*TestRPC* đơn giản chỉ là một blockchain network chạy trên máy local của chúng ta; thường được sử dụng để chạy test cho smart contract và các DApp trên local.
 Ngoài ra, chúng ra có thể deploy trên các public network như [Ropsten](http://pool.ropsten.ethereum.org), [Kovan](https://kovan.etherscan.io) hay thậm trí là trên testnet của Enthereum luôn.
 
 Công việc cài đặt như vậy đã hòm hòm, phần thú vị nhất bây giờ là viết một smart contract theo mong muốn của ông tỷ phú tiền điện tử.
@@ -66,9 +68,9 @@ truffle unbox pet-shop
 
 ## Cấu trúc thư mục dự án
 
-Cấu trúc một sự án Truffle cơ bản bao gồm các thành phần sau:
+Cấu trúc một dự án Truffle cơ bản bao gồm các thành phần sau:
 
-* /contracts: chứa những file mã nguồn [Solidity]() mô tả các smart contract của dự án. 
+* /contracts: chứa những file mã nguồn [Solidity](https://solidity.readthedocs.io/en/develop/) mô tả các smart contract của dự án. 
 * /migrations: Truffle sử dụng migration để deploy các smart lên blockchain network.
 * /test: chứa Javascript và *Solidity* code test cho các smart contract.
 * truffle.js: configuration file của Truffle
@@ -250,12 +252,12 @@ Saving successful migration to network...
 Saving artifacts...
 ```
 
-Wow, phải mừng thôi; chúng ta vừa deploy thành công smart contract trên local blockchain testnet.
-Bạn có thể chú ý thấy địa chỉ của `adoption` smart contract là `0x740c353b61dc5285065164ba3e6881485efa644e` 
+Wow, phải ăn mừng thôi; chúng ta vừa deploy thành công smart contract trên local blockchain testnet.
+Bạn có thể để ý thấy địa chỉ của `adoption` smart contract là `0x740c353b61dc5285065164ba3e6881485efa644e` 
 còn giá trị `0xec80ef7ddb31bd2dbb50ece7abec01e8d12804012f9fbf03a42b84882e493fff` chính là transaction id của giao dịch. 
 Về sau chúng ta có thể check các thông tin tương tự trên các public network thông qua [etherscan.io](https://etherscan.io)
 
-Bước tiếp theo chúng ta sẽ thao tác với smart contract để đẩm bảo là nó sẽ hoạt động đúng như mong đợi.
+Bước tiếp theo chúng ta sẽ thao tác với smart contract để đảm bảo là nó sẽ hoạt động đúng như mong đợi.
 
 ## Kiểm thử Smart Contract
 
