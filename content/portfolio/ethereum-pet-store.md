@@ -70,10 +70,10 @@ truffle unbox pet-shop
 
 Cấu trúc một dự án Truffle cơ bản bao gồm các thành phần sau:
 
-* /contracts: chứa những file mã nguồn [Solidity](https://solidity.readthedocs.io/en/develop/) mô tả các smart contract của dự án. 
-* /migrations: Truffle sử dụng migration để deploy các smart lên blockchain network.
-* /test: chứa Javascript và *Solidity* code test cho các smart contract.
-* truffle.js: configuration file của Truffle
+* `/contracts`: chứa những file mã nguồn [Solidity](https://solidity.readthedocs.io/en/develop/) mô tả các smart contract của dự án. 
+* `/migrations`: Truffle sử dụng migration để deploy các smart lên blockchain network.
+* `/test`: chứa Javascript và *Solidity* code test cho các smart contract.
+* `truffle.js`: configuration file của Truffle
 
 ## Định nghĩa một *Smart Contract*
 
@@ -150,7 +150,7 @@ Vì `adopters` đã được khai báo nên chúng ta chỉ cần đơn giản l
 *Solodity* là một ngôn ngữ biên dịch, nên chúng ta cần dịch mã nguồn ra bytecode để có thể chạy trên `EVM`. Nôm na là chúng ta dịch các đoạn mã Solidity ra mã bytecode để EVM có thể hiểu và chạy được.
 Rồi deploy lên blockchain để chúng ta có thể tương tác với smart contract đã định nghĩa.
 
-Trước tiên, chúng ta mở một cửa sổ console mới rồi chạy lệnh `testrpc` ể khởi động một blockchain ở local. Màn hình output trên console có thể sẽ như sau
+Trước tiên, chúng ta mở một cửa sổ console mới rồi chạy lệnh `testrpc` để khởi động một blockchain ở local. Màn hình output trên console có thể sẽ như sau
 
 ```
 EthereumJS TestRPC v4.1.3 (ganache-core: 1.1.3)
